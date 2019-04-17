@@ -1,7 +1,7 @@
-import { Content } from '../content/content.entity';
-import { Entity, PrimaryGeneratedColumn, Column, OneToMany, ManyToOne, JoinColumn, ManyToMany, JoinTable } from 'typeorm';
 import { EntityParent } from '@pardjs/common';
+import { Column, Entity, JoinColumn, JoinTable, ManyToMany, ManyToOne, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
 import { Category } from '../category/category.entity';
+import { Content } from '../content/content.entity';
 import { Tag } from '../tag/tag.entity';
 
 @Entity('Article')
@@ -27,9 +27,12 @@ export class Article extends EntityParent {
   @Column({type: 'boolean', default: false})
   isPublished: boolean;
 
-  @ManyToOne(type => Category, category => category.articles)
+  @ManyToOne(type => Category, category => category.articles, {cascade: false, eager: true})
   @JoinColumn({name: 'category_id'})
   category: Category;
+
+  @Column({name: 'category_id'})
+  categoryId: number;
 
   @ManyToMany(type => Tag, tag => tag.articles, { cascade: false })
   @JoinTable({name: 'Article_Tag_Link'})

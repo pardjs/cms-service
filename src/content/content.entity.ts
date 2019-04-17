@@ -1,6 +1,6 @@
-import { Article } from '../article/article.entity';
 import { EntityParent } from '@pardjs/common';
-import { Entity, PrimaryGeneratedColumn, ManyToOne, JoinColumn, Column } from 'typeorm';
+import { Column, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
+import { Article } from '../article/article.entity';
 
 @Entity('Content')
 export class Content extends EntityParent {

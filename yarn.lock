@@ -299,7 +299,7 @@
     cli-color "1.4.0"
     uuid "3.3.2"
 
-"@nestjs/common@^6.1.0":
+"@nestjs/common@^6.1.0", "@nestjs/common@^6.1.1":
   version "6.1.1"
   resolved "https://registry.yarnpkg.com/@nestjs/common/-/common-6.1.1.tgz#6f7f0aa0ff45285f9d2b0a66acde1ebeb0c99060"
   integrity sha512-hwAjk0RUMRFWJktTYovW0LWVRy2oLBwdb4mDcomYUoSGrCYZ9xGS+eeB9B7Lby4xoz01E2NTRmdrIh9gQYAEFA==
@@ -411,27 +411,22 @@
     winston "^3.1.2"
     winston-daily-rotate-file "^3.8.0"
 
-"@pardjs/users-service-common@0.0.1":
-  version "0.0.1"
-  resolved "https://registry.yarnpkg.com/@pardjs/users-service-common/-/users-service-common-0.0.1.tgz#39c85f62d10dac1a4cb6e658e5e3e282d3eac6b3"
-  integrity sha512-ClYWJZ9rcQzjBfkzIUo0sqi0LbRgjV49DwrdRBHREbrhSO9vHH1DCEC5qo6uvA66HOk2DHV81d4qr98Vh56rvw==
+"@pardjs/users-service-common@0.0.3", "@pardjs/users-service-common@^0.0.3":
+  version "0.0.3"
+  resolved "https://registry.yarnpkg.com/@pardjs/users-service-common/-/users-service-common-0.0.3.tgz#ed65491e177741c39a189835590843c813aec882"
+  integrity sha512-1xRcknzrnkuIjISqa4YBttryxm3wodUdsW5GwsyvDtix3LK36AkRFlKuhTTcGEtYGy6sRmrxhK21An0oPpahyw==
   dependencies:
     "@nestjs/common" "^6.1.0"
 
-"@pardjs/users-service-common@^0.0.2":
-  version "0.0.2"
-  resolved "https://registry.yarnpkg.com/@pardjs/users-service-common/-/users-service-common-0.0.2.tgz#ca908439c73a4fb43fbc5571188181a40db2eef5"
-  integrity sha512-gmR68TI8HBpTO2dbJXaTNGT/QT6Lshh9ZpnN6I5MO2W0U5SLljTMjVgAQdWCnSzHIgY+VCK6SjCXkrvfmbymcg==
+"@pardjs/users-service-sdk@^0.1.8":
+  version "0.1.8"
+  resolved "https://registry.yarnpkg.com/@pardjs/users-service-sdk/-/users-service-sdk-0.1.8.tgz#841ec900946ff615d94a3b48bdd3f2ce82875941"
+  integrity sha512-lkITKKWaZcY8zj5GIi80dAll0NTPwlwvdA6m4QqNbD68AesMULoMowj5cUx7Ib7ySdkKZ8hkm0uFr88lIqy9+A==
   dependencies:
-    "@nestjs/common" "^6.1.0"
-
-"@pardjs/users-service-sdk@^0.0.2":
-  version "0.0.2"
-  resolved "https://registry.yarnpkg.com/@pardjs/users-service-sdk/-/users-service-sdk-0.0.2.tgz#55ae69b5111c9407ede3da323d296e2ae579d5d3"
-  integrity sha512-agCGC3xWryXZT9zyrZYSJScybSLOZgpOQWUnRT5Ye4h+Qvp/7+ezGAyzgfP+Kgu+Hk2hy3isYjPuXZ0l8aJjtA==
-  dependencies:
+    "@nestjs/common" "^6.1.1"
     "@pardjs/common" "^1.0.2"
-    "@pardjs/users-service-common" "0.0.1"
+    "@pardjs/users-service-common" "0.0.3"
+    axios "^0.18.0"
     passport-jwt "^4.0.0"
 
 "@samverschueren/stream-to-observable@^0.3.0":
@@ -852,7 +847,7 @@ aws4@^1.8.0:
   resolved "http://registry.npm.taobao.org/aws4/download/aws4-1.8.0.tgz#f0e003d9ca9e7f59c7a508945d7b2ef9a04a542f"
   integrity sha1-8OAD2cqef1nHpQiUXXsu+aBKVC8=
 
-axios@0.18.0:
+axios@0.18.0, axios@^0.18.0:
   version "0.18.0"
   resolved "http://registry.npm.taobao.org/axios/download/axios-0.18.0.tgz#32d53e4851efdc0a11993b6cd000789d70c05102"
   integrity sha1-MtU+SFHv3AoRmTts0AB4nXDAUQI=
@@ -1208,8 +1203,8 @@ class-utils@^0.3.5:
 
 class-validator@^0.9.1:
   version "0.9.1"
-  resolved "http://registry.npm.taobao.org/class-validator/download/class-validator-0.9.1.tgz#d60e58c5d14abca0a41bce38cf792ad4c46d1531"
-  integrity sha1-1g5YxdFKvKCkG844z3kq1MRtFTE=
+  resolved "https://registry.yarnpkg.com/class-validator/-/class-validator-0.9.1.tgz#d60e58c5d14abca0a41bce38cf792ad4c46d1531"
+  integrity sha512-3wApflrd3ywVZyx4jaasGoFt8pmo4aGLPPAEKCKCsTRWVGPilahD88q3jQjRQwja50rl9a7rsP5LAxJYwGK8/Q==
   dependencies:
     google-libphonenumber "^3.1.6"
     validator "10.4.0"

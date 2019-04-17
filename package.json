@@ -23,7 +23,9 @@
     "semantic-release-prepare": "ts-node tools/semantic-release-prepare",
     "precommit": "lint-staged",
     "travis-deploy-once": "travis-deploy-once",
-    "doc": "npx compodoc -p tsconfig.json -s"
+    "doc": "npx compodoc -p tsconfig.json -s",
+    "gen-db-migration": "ts-node ./node_modules/typeorm/cli.js  migration:generate -n",
+    "migrate-db": "ts-node ./node_modules/typeorm/cli.js migration:run"
   },
   "dependencies": {
     "@nestjs/common": "^6.0.4",
@@ -31,11 +33,13 @@
     "@nestjs/microservices": "^6.0.4",
     "@nestjs/platform-express": "^6.0.4",
     "@nestjs/swagger": "^3.0.2",
+    "@nestjs/typeorm": "^6.0.0",
     "@nestjs/websockets": "^6.0.4",
     "@pardjs/common": "^1.0.2",
     "@pardjs/users-service-common": "^0.0.2",
     "@pardjs/users-service-sdk": "^0.0.2",
     "dotenv": "^7.0.0",
+    "pg": "^7.10.0",
     "reflect-metadata": "0.1.13",
     "rimraf": "2.6.3",
     "rxjs": "6.4.0",

@@ -1,0 +1,31 @@
+version: '3.1'
+
+services:
+
+  pardjs-cms-service-db:
+    container_name: pardjs-cms-service-db
+    image: postgres:11-alpine
+    restart: always
+    ports:
+      - 54320:5432
+    volumes: 
+      - ./db-data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_USER: pardjs
+      POSTGRES_PASSWORD: example
+      POSTGRES_DB: pardjs-cms-service
+    networks: 
+      - pardjs-cms-service
+
+  pardjs-cms-service-db-adminer:
+    container_name: pardjs-cms-service-db-adminer
+    image: adminer:4
+    restart: always
+    links: 
+      - pardjs-cms-service-db:db
+    ports:
+      - 127.0.0.1:8081:8080
+    networks: 
+      - pardjs-cms-service
+networks: 
+  pardjs-cms-service:

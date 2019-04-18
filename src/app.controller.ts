@@ -1,12 +1,21 @@
-import { Get, Controller } from '@nestjs/common';
+import { Controller, Get } from '@nestjs/common';
+import { spanHours } from '@pardjs/common';
 import { AppService } from './app.service';
+import { SERVICE_NAME } from './constants';
 
 @Controller()
 export class AppController {
-  constructor(private readonly appService: AppService) {}
+  private uptime: Date;
+  constructor(private readonly appService: AppService) {
+    this.uptime = new Date();
+  }
 
-  @Get()
-  getHello(): string {
-    return this.appService.getHello();
+  @Get('ping')
+  getHello() {
+    return {
+      SERVICE_NAME,
+      uptime: this.uptime,
+      hours: spanHours(this.uptime),
+    };
   }
 }

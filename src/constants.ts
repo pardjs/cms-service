@@ -1,4 +1,3 @@
-import { checkEnv } from '@pardjs/common';
 
 // checkEnv('PORT');
 

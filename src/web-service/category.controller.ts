@@ -1,4 +1,5 @@
 import { Body, Controller, Delete, Get, Param, Post, Query, UseGuards } from '@nestjs/common';
+import { ApiBearerAuth, ApiUseTags } from '@nestjs/swagger';
 import { AuthPointName } from '@pardjs/users-service-common';
 import { AirRolesGuard } from '@pardjs/users-service-sdk';
 import { FindManyOptions } from 'typeorm';
@@ -6,23 +7,27 @@ import { Category } from '../category/category.entity';
 import { UpsertCategoryDto } from '../category/dto/upsert-category.dto';
 import { CMSAuthPointsNames } from '../cms-auth-points.enum';
 
-@Controller()
+@Controller('categories')
+@ApiUseTags('Category')
 export class CategoryController {
     constructor() {}
 
     @AuthPointName(CMSAuthPointsNames.CREATE_CATEGORY)
     @Post('')
     @UseGuards(AirRolesGuard)
+    @ApiBearerAuth()
     create(@Body() data: UpsertCategoryDto) {}
 
     @AuthPointName(CMSAuthPointsNames.FIND_CATEGORIES)
     @Get('')
     @UseGuards(AirRolesGuard)
+    @ApiBearerAuth()
     find(@Query() query: FindManyOptions<Category>) {}
 
     @AuthPointName(CMSAuthPointsNames.FIND_ONE_CATEGORY)
     @Get(':id')
     @UseGuards(AirRolesGuard)
+    @ApiBearerAuth()
     findOne(@Param('id') id: number) {
         // TODO: validate id in dto
     }
@@ -30,12 +35,14 @@ export class CategoryController {
     @AuthPointName(CMSAuthPointsNames.REMOVE_CATEGORY)
     @Delete(':id')
     @UseGuards(AirRolesGuard)
+    @ApiBearerAuth()
     remove(@Param('id') id: number) {
     }
 
     @AuthPointName(CMSAuthPointsNames.UPDATE_CATEGORY)
     @Delete(':id')
     @UseGuards(AirRolesGuard)
+    @ApiBearerAuth()
     update(@Param('id') id: number, @Body() data: UpsertCategoryDto) {
     }
 }

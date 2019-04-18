@@ -290,7 +290,7 @@
     "@types/istanbul-lib-coverage" "^2.0.0"
     "@types/yargs" "^12.0.9"
 
-"@nestjs/common@^6.0.4", "@nestjs/common@^6.0.5":
+"@nestjs/common@^6.0.5":
   version "6.0.5"
   resolved "http://registry.npm.taobao.org/@nestjs/common/download/@nestjs/common-6.0.5.tgz#2e33ced50e629a5c32df3b9a09efde61d4b5a2df"
   integrity sha1-LjPO1Q5imlwy3zuaCe/eYdS1ot8=
@@ -308,10 +308,22 @@
     cli-color "1.4.0"
     uuid "3.3.2"
 
-"@nestjs/core@^6.0.4", "@nestjs/core@^6.0.5":
+"@nestjs/core@^6.0.5":
   version "6.0.5"
   resolved "http://registry.npm.taobao.org/@nestjs/core/download/@nestjs/core-6.0.5.tgz#f17b91c7c0fcee178791040279be06ffc3785faf"
   integrity sha1-8XuRx8D87heHkQQCeb4G/8N4X68=
+  dependencies:
+    "@nuxtjs/opencollective" "0.2.1"
+    fast-safe-stringify "2.0.6"
+    iterare "1.1.2"
+    object-hash "1.3.1"
+    optional "0.1.4"
+    uuid "3.3.2"
+
+"@nestjs/core@^6.1.1":
+  version "6.1.1"
+  resolved "http://registry.npm.taobao.org/@nestjs/core/download/@nestjs/core-6.1.1.tgz#10494e8e1a4bcf55059fd114c0934186c2130930"
+  integrity sha1-EElOjhpLz1UFn9EUwJNBhsITCTA=
   dependencies:
     "@nuxtjs/opencollective" "0.2.1"
     fast-safe-stringify "2.0.6"
@@ -328,10 +340,10 @@
     "@types/jsonwebtoken" "7.2.8"
     jsonwebtoken "8.4.0"
 
-"@nestjs/microservices@^6.0.4":
-  version "6.0.5"
-  resolved "http://registry.npm.taobao.org/@nestjs/microservices/download/@nestjs/microservices-6.0.5.tgz#c2a5920df44804818b68620b77d9509e4d7f4e03"
-  integrity sha1-wqWSDfRIBIGLaGILd9lQnk1/TgM=
+"@nestjs/microservices@^6.1.1":
+  version "6.1.1"
+  resolved "http://registry.npm.taobao.org/@nestjs/microservices/download/@nestjs/microservices-6.1.1.tgz#e3ceeeab61d256d4a2d35721489cc443862e3bbf"
+  integrity sha1-487uq2HSVtSi01chSJzEQ4YuO78=
   dependencies:
     iterare "1.1.2"
     json-socket "0.3.0"
@@ -342,10 +354,10 @@
   resolved "http://registry.npm.taobao.org/@nestjs/passport/download/@nestjs/passport-6.0.0.tgz#b92fdf90e055eece02c0378fce98e6f60a864c54"
   integrity sha1-uS/fkOBV7s4CwDePzpjm9gqGTFQ=
 
-"@nestjs/platform-express@^6.0.4":
-  version "6.0.5"
-  resolved "http://registry.npm.taobao.org/@nestjs/platform-express/download/@nestjs/platform-express-6.0.5.tgz#148811f480583ecadc2958fd1a794e71fc55a5df"
-  integrity sha1-FIgR9IBYPsrcKVj9GnlOcfxVpd8=
+"@nestjs/platform-express@^6.1.1":
+  version "6.1.1"
+  resolved "http://registry.npm.taobao.org/@nestjs/platform-express/download/@nestjs/platform-express-6.1.1.tgz#4d4d4774a65b14c81646d10da9768f4cb6b922d6"
+  integrity sha1-TU1HdKZbFMgWRtENqXaPTLa5ItY=
   dependencies:
     body-parser "1.18.3"
     cors "2.8.5"
@@ -374,10 +386,10 @@
   dependencies:
     uuid "3.3.2"
 
-"@nestjs/websockets@^6.0.4":
-  version "6.0.5"
-  resolved "http://registry.npm.taobao.org/@nestjs/websockets/download/@nestjs/websockets-6.0.5.tgz#09ae116e2d3b25c6eb8c75b0d8a9ad5759015848"
-  integrity sha1-Ca4Rbi07JcbrjHWw2KmtV1kBWEg=
+"@nestjs/websockets@^6.1.1":
+  version "6.1.1"
+  resolved "http://registry.npm.taobao.org/@nestjs/websockets/download/@nestjs/websockets-6.1.1.tgz#99202e4ebe1310337926b5b32b264921ae957247"
+  integrity sha1-mSAuTr4TEDN5JrWzKyZJIa6Vckc=
   dependencies:
     iterare "1.1.2"
 
@@ -418,10 +430,10 @@
   dependencies:
     "@nestjs/common" "^6.1.0"
 
-"@pardjs/users-service-sdk@^0.1.8":
-  version "0.1.8"
-  resolved "https://registry.yarnpkg.com/@pardjs/users-service-sdk/-/users-service-sdk-0.1.8.tgz#841ec900946ff615d94a3b48bdd3f2ce82875941"
-  integrity sha512-lkITKKWaZcY8zj5GIi80dAll0NTPwlwvdA6m4QqNbD68AesMULoMowj5cUx7Ib7ySdkKZ8hkm0uFr88lIqy9+A==
+"@pardjs/users-service-sdk@^0.1.13":
+  version "0.1.13"
+  resolved "https://registry.npmjs.org/@pardjs/users-service-sdk/-/users-service-sdk-0.1.13.tgz#cde9f1806bddfa129e713023913deb51471fcb52"
+  integrity sha512-iI7O/cuNV61reWi99oPflHmSgiRG7+o9qgZRKxJIByNa/yLrSdqy2dTsr3mOh4hmTu9MBVjb02aMs3cQDiB7Dg==
   dependencies:
     "@nestjs/common" "^6.1.1"
     "@pardjs/common" "^1.0.2"

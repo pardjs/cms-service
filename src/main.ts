@@ -4,14 +4,15 @@ config();
 import { NestFactory } from '@nestjs/core';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 
+import {
+  corsOptions,
+  HttpExceptionFilter,
+  logger,
+  ValidationPipe,
+} from '@pardjs/common';
 import { AppModule } from './app.module';
 import { PORT } from './constants';
-import {
-  logger,
-  corsOptions,
-  ValidationPipe,
-  HttpExceptionFilter,
-} from '@pardjs/common';
+
 // tslint:disable-next-line:no-var-requires
 const { version } = require('../package.json');
 
@@ -25,6 +26,7 @@ async function bootstrap() {
     .setDescription('The Pardjs CMS Service API description')
     .setVersion(version)
     .addTag('cats')
+    .addBearerAuth()
     .build();
   const document = SwaggerModule.createDocument(app, options);
   const apiDocPath = 'api-doc';

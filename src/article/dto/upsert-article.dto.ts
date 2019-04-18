@@ -1,34 +1,38 @@
 import { ApiModelProperty } from '@nestjs/swagger';
-import { IsString, IsOptional, IsBoolean, IsInt, IsArray } from 'class-validator';
+import { IsArray, IsInt, IsNumber, IsOptional, IsString } from 'class-validator';
 
 export class UpsertArticleDto {
-    @ApiModelProperty()
+    @ApiModelProperty({example: 'article-alias'})
     @IsString()
     aliasPath: string;
 
-    @ApiModelProperty()
+    @ApiModelProperty({example: '测试文章'})
     @IsString()
     title: string;
 
-    @ApiModelProperty()
+    @ApiModelProperty({example: '文章描述 \n 描述文章'})
     @IsString()
     @IsOptional()
     description?: string;
 
-    @ApiModelProperty()
+    @ApiModelProperty({example: '文章内容，是一大段。'})
     @IsString()
     content: string;
 
-    @ApiModelProperty()
+    @ApiModelProperty({example: '/images/000-111-0000.jpg'})
     @IsString()
     coverImageUrl: string;
 
-    @ApiModelProperty()
+    @ApiModelProperty({example: 1})
     @IsInt()
     categoryId: number;
 
-    @ApiModelProperty()
-    @IsArray()
+    @ApiModelProperty({
+        type: Number,
+        isArray: true,
+        example: [1, 2, 3],
+    })
+    @IsArray({})
     @IsOptional()
     tagIds: number[];
 }

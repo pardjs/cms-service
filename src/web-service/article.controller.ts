@@ -18,13 +18,13 @@ export class ArticleController {
     @ApiBearerAuth()
     create(@Body() data: UpsertArticleDto) {}
 
-    @AuthPointName(CMSAuthPointsNames.CREATE_ARTICLE)
+    @AuthPointName(CMSAuthPointsNames.PUBLISH)
     @Post('actions/publish')
     @UseGuards(AirRolesGuard)
     @ApiBearerAuth()
     publish() {}
 
-    @AuthPointName(CMSAuthPointsNames.CREATE_ARTICLE)
+    @AuthPointName(CMSAuthPointsNames.PUBLISH_ARTICLE)
     @Post(':id/actions/publish')
     @UseGuards(AirRolesGuard)
     @ApiBearerAuth()

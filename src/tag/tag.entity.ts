@@ -1,12 +1,13 @@
-import { Article } from './../article/article.entity';
 import { EntityParent } from '@pardjs/common';
-import { Entity, PrimaryGeneratedColumn, Column, ManyToMany } from 'typeorm';
+import { Column, Entity, Index, ManyToMany, PrimaryGeneratedColumn } from 'typeorm';
+import { Article } from '../article/article.entity';
 
 @Entity('Tag')
 export class Tag extends EntityParent {
   @PrimaryGeneratedColumn()
   id: number;
 
+  @Index('idx-tag-name-unique', { unique: true })
   @Column()
   name: string;
 

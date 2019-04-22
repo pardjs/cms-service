@@ -38,6 +38,7 @@
     "@pardjs/common": "^1.0.2",
     "@pardjs/users-service-common": "^0.0.3",
     "@pardjs/users-service-sdk": "^0.1.13",
+    "ali-oss": "^6.1.1",
     "class-validator": "^0.9.1",
     "dotenv": "^7.0.0",
     "pg": "^7.10.0",

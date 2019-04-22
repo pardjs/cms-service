@@ -1,4 +1,4 @@
-import { Body, Controller, Delete, Get, Param, Post, Query, UseGuards } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, Post, Put, Query, UseGuards } from '@nestjs/common';
 import { ApiBearerAuth, ApiUseTags } from '@nestjs/swagger';
 import { AuthPointName } from '@pardjs/users-service-common';
 import { AirRolesGuard } from '@pardjs/users-service-sdk';
@@ -6,42 +6,51 @@ import { Article } from 'src/article/article.entity';
 import { FindManyOptions } from 'typeorm';
 import { UpsertArticleDto } from '../article/dto/upsert-article.dto';
 import { CMSAuthPointsNames } from '../cms-auth-points.enum';
+import { ArticleApiService } from './article.service';
 
 @Controller('articles')
 @ApiUseTags('Article')
 export class ArticleController {
-    constructor() {}
+    constructor(private articleApiService: ArticleApiService) {}
 
     @AuthPointName(CMSAuthPointsNames.CREATE_ARTICLE)
     @Post('')
     @UseGuards(AirRolesGuard)
     @ApiBearerAuth()
-    create(@Body() data: UpsertArticleDto) {}
+    create(@Body() data: UpsertArticleDto) {
+        return this.articleApiService.create(data);
+    }
 
     @AuthPointName(CMSAuthPointsNames.PUBLISH)
     @Post('actions/publish')
     @UseGuards(AirRolesGuard)
     @ApiBearerAuth()
-    publish() {}
+    publish() {
+        return this.articleApiService.publish();
+    }
 
     @AuthPointName(CMSAuthPointsNames.PUBLISH_ARTICLE)
     @Post(':id/actions/publish')
     @UseGuards(AirRolesGuard)
     @ApiBearerAuth()
-    publishOne(@Param('id') id: number) {}
+    publishOne(@Param('id') id: number) {
+        return this.articleApiService.publishOne(id);
+    }
 
     @AuthPointName(CMSAuthPointsNames.FIND_ARTICLES)
     @Get('')
     @UseGuards(AirRolesGuard)
     @ApiBearerAuth()
-    find(@Query() query: FindManyOptions<Article>) {}
+    find(@Query() query: FindManyOptions<Article>) {
+        return this.articleApiService.find();
+    }
 
     @AuthPointName(CMSAuthPointsNames.FIND_ONE_ARTICLE)
     @Get(':id')
     @UseGuards(AirRolesGuard)
     @ApiBearerAuth()
     findOne(@Param('id') id: number) {
-        // TODO: validate id in dto
+        return this.articleApiService.findOne(id);
     }
 
     @AuthPointName(CMSAuthPointsNames.REMOVE_ARTICLE)
@@ -49,12 +58,14 @@ export class ArticleController {
     @UseGuards(AirRolesGuard)
     @ApiBearerAuth()
     remove(@Param('id') id: number) {
+        return this.articleApiService.remove(id);
     }
 
     @AuthPointName(CMSAuthPointsNames.UPDATE_ARTICLE)
-    @Delete(':id')
+    @Put(':id')
     @UseGuards(AirRolesGuard)
     @ApiBearerAuth()
     update(@Param('id') id: number, @Body() data: UpsertArticleDto) {
+        return this.articleApiService.updateOne(id, data);
     }
 }

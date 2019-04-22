@@ -13,4 +13,7 @@ export class Content extends EntityParent {
   @ManyToOne(type => Article, article => article.contentVersions)
   @JoinColumn({name: 'article_id'})
   article: Article;
+
+  @Column({name: 'article_id'})
+  articleId: number;
 }

@@ -1,5 +1,5 @@
 import { EntityParent } from '@pardjs/common';
-import { Column, Entity, JoinColumn, JoinTable, ManyToMany, ManyToOne, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity, JoinColumn, JoinTable, ManyToMany, ManyToOne, OneToMany, PrimaryGeneratedColumn, Index } from 'typeorm';
 import { Category } from '../category/category.entity';
 import { Content } from '../content/content.entity';
 import { Tag } from '../tag/tag.entity';
@@ -9,8 +9,9 @@ export class Article extends EntityParent {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column()
-  aliasPath: string;
+  @Index('idx-article-aliasPath', {sparse: true, unique: true})
+  @Column({nullable: true})
+  aliasPath?: string;
 
   @Column()
   title: string;
@@ -34,7 +35,13 @@ export class Article extends EntityParent {
   @Column({name: 'category_id'})
   categoryId: number;
 
-  @ManyToMany(type => Tag, tag => tag.articles, { cascade: false })
+  @ManyToMany(type => Tag, tag => tag.articles, { cascade: false, eager: true })
   @JoinTable({name: 'Article_Tag_Link'})
   tags: Tag[];
+
+  @Column()
+  createdByUserId: number;
+
+  @Column({nullable: true})
+  updatedByUserId?: number;
 }

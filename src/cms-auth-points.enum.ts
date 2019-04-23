@@ -1,4 +1,5 @@
 export enum CMSAuthPointsDisplayNames {
+    GET_UPLOAD_POLICY = 'get upload file policy',
     FIND_ARTICLES = 'find articles',
     FIND_ONE_ARTICLE = 'find article by id',
     CREATE_ARTICLE = 'create an article',
@@ -23,6 +24,7 @@ export enum CMSAuthPointsDisplayNames {
 }
 
 export enum CMSAuthPointsNames {
+    GET_UPLOAD_POLICY = 'CMS_SERVICE-GET_UPLOAD_POLICY',
     FIND_ARTICLES = 'CMS_SERVICE-FIND_ARTICLES',
     FIND_ONE_ARTICLE = 'CMS_SERVICE-FIND_ONE_ARTICLE',
     CREATE_ARTICLE = 'CMS_SERVICE-CREATE_ARTICLE',

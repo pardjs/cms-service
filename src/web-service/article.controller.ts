@@ -1,6 +1,6 @@
-import { Body, Controller, Delete, Get, Param, Post, Put, Query, UseGuards } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, Post, Put, Query, Request, UseGuards } from '@nestjs/common';
 import { ApiBearerAuth, ApiUseTags } from '@nestjs/swagger';
-import { AuthPointName } from '@pardjs/users-service-common';
+import { AuthPointName, UserResponse } from '@pardjs/users-service-common';
 import { AirRolesGuard } from '@pardjs/users-service-sdk';
 import { Article } from 'src/article/article.entity';
 import { FindManyOptions } from 'typeorm';
@@ -17,8 +17,9 @@ export class ArticleController {
     @Post('')
     @UseGuards(AirRolesGuard)
     @ApiBearerAuth()
-    create(@Body() data: UpsertArticleDto) {
-        return this.articleApiService.create(data);
+    create(@Body() data: UpsertArticleDto, @Request() req: any) {
+        const user = req.user as UserResponse;
+        return this.articleApiService.create(data, user.id);
     }
 
     @AuthPointName(CMSAuthPointsNames.PUBLISH)
@@ -65,7 +66,8 @@ export class ArticleController {
     @Put(':id')
     @UseGuards(AirRolesGuard)
     @ApiBearerAuth()
-    update(@Param('id') id: number, @Body() data: UpsertArticleDto) {
-        return this.articleApiService.updateOne(id, data);
+    update(@Param('id') id: number, @Body() data: UpsertArticleDto, @Request() req: any) {
+        const user = req.user as UserResponse;
+        return this.articleApiService.updateOne(id, data, user.id);
     }
 }

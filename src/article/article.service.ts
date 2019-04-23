@@ -22,17 +22,13 @@ export class ArticleService {
   }
 
   findOne(id: number) {
-    return this.repository.findOne(id, {
-      join: {
-        alias: 'article',
-        leftJoin: {
-          category: 'article.category',
-          tags: 'article.tags',
-        },
-      },
-    });
+    return this.repository.findOne(id);
   }
   remove(id: number) {
     return this.repository.delete(id);
+  }
+
+  setPublished(id: number) {
+    return this.repository.update({id}, { isPublished: true });
   }
 }

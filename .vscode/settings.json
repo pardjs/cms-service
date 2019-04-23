@@ -2,16 +2,20 @@
     "cSpell.words": [
         "Injectable",
         "Upsert",
+        "accessid",
         "commitlint",
         "compodoc",
         "lcov",
         "microservices",
         "nestjs",
         "pardjs",
+        "parens",
         "postgres",
         "precommit",
         "prestart",
+        "quotemark",
         "typeorm",
+        "uuidv",
         "websockets"
     ]
 }

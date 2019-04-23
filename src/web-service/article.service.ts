@@ -1,4 +1,4 @@
-import { BadRequestException, Injectable } from '@nestjs/common';
+import { BadRequestException, Injectable, Logger } from '@nestjs/common';
 import { In } from 'typeorm';
 import { Article } from '../article/article.entity';
 import { ArticleService } from '../article/article.service';
@@ -22,13 +22,14 @@ export class ArticleApiService {
     private readonly tagService: TagService,
   ) {}
 
-  async create(data: UpsertArticleDto) {
+  async create(data: UpsertArticleDto, userId: number) {
     const newArticle = this.articleService.getNewInstance();
     newArticle.aliasPath = data.aliasPath;
     newArticle.categoryId = data.categoryId;
     newArticle.coverImageUrl = data.coverImageUrl;
     newArticle.description = data.description;
     newArticle.title = data.title;
+    newArticle.createdByUserId = userId;
     if (data.tagIds && data.tagIds.length > 0) {
       newArticle.tags = await this.tagService.find({where: {id: In(data.tagIds)}});
     }
@@ -51,13 +52,29 @@ export class ArticleApiService {
   }
 
   async publish() {
-    const data = await this.find();
-    return this.aliCloudOssService.saveText(`articles/index.json`, JSON.stringify(data));
+    const {data: articles} = await this.find();
+    for (const article of articles) {
+      await this.publishOne(article.id);
+    }
+    return this.aliCloudOssService.saveText(`articles/index.json`, JSON.stringify(articles.map(article => {
+      return {
+        key: article.aliasPath || article.id,
+        category: article.category,
+        tags: article.tags,
+        title: article.title,
+        description: article.description,
+      };
+    })));
   }
 
   async publishOne(id: number) {
     const article = await this.findOne(id);
-    return this.aliCloudOssService.saveText(`articles/${article.aliasPath || article.id}.json`, JSON.stringify(article));
+    const content = article.content;
+    article.content = `articles/${article.aliasPath || article.id}-content.html`;
+    const resContent = await this.aliCloudOssService.saveText(article.content, content);
+    article.content = resContent.name;
+    const resArticle = await this.aliCloudOssService.saveText(`articles/${article.aliasPath || article.id}.json`, JSON.stringify(article));
+    return { articlePath: resArticle.name, contentPath: resContent.name };
   }
 
   async find(skip?: number, take?: number) {
@@ -72,7 +89,7 @@ export class ArticleApiService {
     return { data, count };
   }
 
-  async updateOne(id: number, data: UpsertArticleDto) {
+  async updateOne(id: number, data: UpsertArticleDto, userId: number) {
     const article = await this.articleService.findOne(id);
     if (!article) {
       throw new BadRequestException('article not found');
@@ -82,6 +99,7 @@ export class ArticleApiService {
     article.coverImageUrl = data.coverImageUrl || article.coverImageUrl;
     article.description = data.description || article.description;
     article.title = data.title || article.title;
+    article.updatedByUserId = userId;
     if (data.tagIds && data.tagIds.length > 0) {
       article.tags = await this.tagService.find({where: {id: In(data.tagIds)}});
     }

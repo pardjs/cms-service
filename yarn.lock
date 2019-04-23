@@ -595,6 +595,13 @@
   dependencies:
     "@types/superagent" "*"
 
+"@types/uuid@^3.4.4":
+  version "3.4.4"
+  resolved "http://registry.npm.taobao.org/@types/uuid/download/@types/uuid-3.4.4.tgz#7af69360fa65ef0decb41fd150bf4ca5c0cefdf5"
+  integrity sha1-evaTYPpl7w3stB/RUL9MpcDO/fU=
+  dependencies:
+    "@types/node" "*"
+
 "@types/yargs@^12.0.2", "@types/yargs@^12.0.9":
   version "12.0.11"
   resolved "http://registry.npm.taobao.org/@types/yargs/download/@types/yargs-12.0.11.tgz#a090d88e1f40a910e6443c95493c1c035c76ebdc"

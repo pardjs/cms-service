@@ -61,3 +61,5 @@ typings/
 .next
 db-data
 dist
+
+.DS_Store

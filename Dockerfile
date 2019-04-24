@@ -1,8 +1,9 @@
 FROM keymetrics/pm2:10-alpine
 RUN apk add tzdata
 RUN apk add dpkg
-ADD repositories /etc/apk/repositories
-RUN apk add --update python python-dev gfortran py-pip build-base py-numpy@community
+RUN apk add python python-dev
+RUN apk add make
+RUN apk add g++
 ENV TZ=Asia/Shanghai
 ENV NODE_ENV=production
 ENV LOG_PATH=/var/logs

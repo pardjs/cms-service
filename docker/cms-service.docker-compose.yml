@@ -6,7 +6,7 @@ services:
     image: registry.cn-shanghai.aliyuncs.com/pardjs/cms-service:1.1.0
     restart: always
     env_file:
-      - cms-service.docker-compose.env
+      - .env
     volumes: 
       - ./logs:/var/logs
     ports:

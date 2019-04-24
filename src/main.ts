@@ -29,12 +29,15 @@ async function bootstrap() {
     .addTag('cats')
     .setBasePath(SERVICE_BASE + '/api')
     .addBearerAuth()
+    .setSchemes('http', 'https')
     .build();
-  const document = SwaggerModule.createDocument(app, options);
-  const apiDocPath = 'api-doc';
-  SwaggerModule.setup(apiDocPath, app, document);
+  const doc = SwaggerModule.createDocument(app, options);
+  SwaggerModule.setup(
+    SERVICE_BASE + (SERVICE_BASE ? '-' : '/') + 'api-doc',
+    app,
+    doc,
+  );
   await app.listen(PORT);
   logger.info(`service started at ${PORT}`);
-  logger.info(`find api doc at http://0.0.0.0:${PORT}/${apiDocPath}`);
 }
 bootstrap();

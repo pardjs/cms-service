@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import {v4 as uuidv4} from 'uuid';
+import { v4 as uuidv4 } from 'uuid';
 import { ClientUploadCallback } from './client-upload-callback.entity';
 import { ClientUploadRequest } from './client-upload-request.entity';
 import { CreateCallbackDto } from './create-callback.dto';
@@ -25,6 +25,6 @@ export class ClientUploadActivityService {
 
   public createCallback(data: CreateCallbackDto) {
     const callback = this.callbackRepository.create(data);
-    return this.requestRepository.save(callback);
+    return this.callbackRepository.save(callback);
   }
 }

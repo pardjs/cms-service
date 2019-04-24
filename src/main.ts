@@ -10,6 +10,7 @@ import {
   logger,
   ValidationPipe,
 } from '@pardjs/common';
+import * as cookieParser from 'cookie-parser';
 import { AppModule } from './app.module';
 import { PORT, SERVICE_BASE } from './constants';
 
@@ -21,6 +22,7 @@ async function bootstrap() {
   app.enableCors(corsOptions);
   app.useGlobalPipes(new ValidationPipe());
   app.useGlobalFilters(new HttpExceptionFilter());
+  app.use(cookieParser());
   app.setGlobalPrefix('/api');
   const options = new DocumentBuilder()
     .setTitle('Pardjs CMS Service')

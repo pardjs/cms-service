@@ -11,7 +11,7 @@ import {
   ValidationPipe,
 } from '@pardjs/common';
 import { AppModule } from './app.module';
-import { PORT } from './constants';
+import { PORT, SERVICE_BASE } from './constants';
 
 // tslint:disable-next-line:no-var-requires
 const { version } = require('../package.json');
@@ -21,11 +21,13 @@ async function bootstrap() {
   app.enableCors(corsOptions);
   app.useGlobalPipes(new ValidationPipe());
   app.useGlobalFilters(new HttpExceptionFilter());
+  app.setGlobalPrefix('/api');
   const options = new DocumentBuilder()
     .setTitle('Pardjs CMS Service')
     .setDescription('The Pardjs CMS Service API description')
     .setVersion(version)
     .addTag('cats')
+    .setBasePath(SERVICE_BASE + '/api')
     .addBearerAuth()
     .build();
   const document = SwaggerModule.createDocument(app, options);

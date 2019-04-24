@@ -1,0 +1,17 @@
+version: '3.1'
+
+services:
+  pardjs-cms-service:
+    container_name: pardjs-cms-service
+    image: registry.cn-shanghai.aliyuncs.com/pardjs/cms-service:1.1.0
+    restart: always
+    env_file:
+      - cms-service.docker-compose.env
+    volumes: 
+      - ./logs:/var/logs
+    ports:
+      - 5005:5000
+    networks: 
+      - pardjs-cms-service
+networks: 
+  pardjs-cms-service:

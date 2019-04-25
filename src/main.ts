@@ -10,8 +10,9 @@ import {
   logger,
   ValidationPipe,
 } from '@pardjs/common';
+import * as cookieParser from 'cookie-parser';
 import { AppModule } from './app.module';
-import { PORT } from './constants';
+import { PORT, SERVICE_BASE } from './constants';
 
 // tslint:disable-next-line:no-var-requires
 const { version } = require('../package.json');
@@ -21,18 +22,24 @@ async function bootstrap() {
   app.enableCors(corsOptions);
   app.useGlobalPipes(new ValidationPipe());
   app.useGlobalFilters(new HttpExceptionFilter());
+  app.use(cookieParser());
+  app.setGlobalPrefix('/api');
   const options = new DocumentBuilder()
     .setTitle('Pardjs CMS Service')
     .setDescription('The Pardjs CMS Service API description')
     .setVersion(version)
     .addTag('cats')
+    .setBasePath(SERVICE_BASE + '/api')
     .addBearerAuth()
+    .setSchemes('http', 'https')
     .build();
-  const document = SwaggerModule.createDocument(app, options);
-  const apiDocPath = 'api-doc';
-  SwaggerModule.setup(apiDocPath, app, document);
+  const doc = SwaggerModule.createDocument(app, options);
+  SwaggerModule.setup(
+    SERVICE_BASE + (SERVICE_BASE ? '-' : '/') + 'api-doc',
+    app,
+    doc,
+  );
   await app.listen(PORT);
   logger.info(`service started at ${PORT}`);
-  logger.info(`find api doc at http://0.0.0.0:${PORT}/${apiDocPath}`);
 }
 bootstrap();

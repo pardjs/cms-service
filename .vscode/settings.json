@@ -3,6 +3,7 @@
         "Injectable",
         "Upsert",
         "accessid",
+        "aliyuncs",
         "commitlint",
         "compodoc",
         "lcov",

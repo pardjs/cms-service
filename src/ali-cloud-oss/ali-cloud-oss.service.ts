@@ -1,8 +1,8 @@
 import { Injectable } from '@nestjs/common';
-import { MS_ONE_SECOND } from '@pardjs/common';
+import { MS_ONE_SECOND, objToBase64, sha1 } from '@pardjs/common';
 import { createHmac } from 'crypto';
 import { join } from 'path';
-import { ACCESS_KEY_ID, ACCESS_KEY_SECRET, BASE_PATH, BUCKET, REGION, CALLBACK_URL } from './constants';
+import { ACCESS_KEY_ID, ACCESS_KEY_SECRET, BASE_PATH, BUCKET, CALLBACK_URL, REGION } from './constants';
 import { UploadCallback } from './upload-callback.interface';
 import { UploadConfig } from './upload-config.interface';
 import { UploadPolicy } from './upload-policy.interface';
@@ -38,8 +38,8 @@ export class AliCloudOssService {
     config.expiration = (new Date(expireAt)).toISOString();
     const condition = ['starts-with', '$key', BASE_PATH + uploadDir];
     config.conditions = [condition];
-    const configBase64 = this.objToBase64(config);
-    const signature = this.sha1(ACCESS_KEY_SECRET, configBase64);
+    const configBase64 = objToBase64(config);
+    const signature = sha1(ACCESS_KEY_SECRET, configBase64);
     const callback: UploadCallback = {
       callbackUrl: CALLBACK_URL,
       callbackBody: 'filename=${object}&size=${size}&mimeType=${mimeType}',
@@ -55,16 +55,8 @@ export class AliCloudOssService {
       signature,
       policy: configBase64,
       dir: BASE_PATH + uploadDir,
-      callback: this.objToBase64(callback),
+      callback: objToBase64(callback),
     };
     return policy;
-  }
-
-  private sha1(key: string, content: string) {
-    return createHmac('sha1', key).update(content).digest('base64');
-  }
-
-  private objToBase64(obj: object) {
-    return Buffer.from(JSON.stringify(obj)).toString('base64');
   }
 }

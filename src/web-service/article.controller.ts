@@ -14,7 +14,7 @@ import {
 import { ApiBearerAuth, ApiResponse, ApiUseTags } from '@nestjs/swagger';
 import { AuthPointName, UserResponse } from '@pardjs/users-service-common';
 import { AirRolesGuard } from '@pardjs/users-service-sdk';
-import { ArticleListResponseDto } from 'src/article/dto/article-list-response.dto';
+import { ArticleListResponseDto } from '../article/dto/article-list-response.dto';
 import { DeleteResult } from 'typeorm';
 import { OssPutResponseDto } from '../ali-cloud-oss/oss-put-response.dto';
 import { UpsertArticleDto } from '../article/dto/upsert-article.dto';

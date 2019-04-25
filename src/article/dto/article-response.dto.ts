@@ -21,10 +21,10 @@ export class ArticleResponseDto {
   @ApiModelProperty({ example: '/images/000-111-0000.jpg' })
   coverImageUrl: string;
 
-  @ApiModelProperty({})
+  @ApiModelProperty({ type: CategoryResponseDto })
   category: CategoryResponseDto;
 
-  @ApiModelProperty({})
+  @ApiModelProperty({ type: TagResponseDto, isArray: true })
   tags: TagResponseDto[];
 
   @ApiModelProperty()

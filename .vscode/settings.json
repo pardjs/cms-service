@@ -6,6 +6,7 @@
         "aliyuncs",
         "commitlint",
         "compodoc",
+        "jsonb",
         "lcov",
         "microservices",
         "nestjs",
@@ -17,6 +18,7 @@
         "quotemark",
         "typeorm",
         "uuidv",
+        "varchar",
         "websockets"
     ]
 }

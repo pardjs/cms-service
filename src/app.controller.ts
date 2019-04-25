@@ -1,12 +1,11 @@
 import { Controller, Get } from '@nestjs/common';
 import { spanHours } from '@pardjs/common';
-import { AppService } from './app.service';
 import { SERVICE_NAME } from './constants';
 
 @Controller()
 export class AppController {
   private uptime: Date;
-  constructor(private readonly appService: AppService) {
+  constructor() {
     this.uptime = new Date();
   }
 

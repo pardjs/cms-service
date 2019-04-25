@@ -1,47 +1,60 @@
 import { EntityParent } from '@pardjs/common';
-import { Column, Entity, JoinColumn, JoinTable, ManyToMany, ManyToOne, OneToMany, PrimaryGeneratedColumn, Index } from 'typeorm';
+import {
+  Column,
+  Entity,
+  Index,
+  JoinColumn,
+  JoinTable,
+  ManyToMany,
+  ManyToOne,
+  OneToMany,
+  PrimaryGeneratedColumn,
+} from 'typeorm';
 import { Category } from '../category/category.entity';
-import { Content } from '../content/content.entity';
 import { Tag } from '../tag/tag.entity';
+import { ArticleContent } from './../article-content/article-content.entity';
 
 @Entity('Article')
 export class Article extends EntityParent {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Index('idx-article-aliasPath', {sparse: true, unique: true})
-  @Column({nullable: true})
+  @Index('idx-article-aliasPath', { sparse: true, unique: true })
+  @Column({ nullable: true })
   aliasPath?: string;
 
   @Column()
   title: string;
 
-  @Column({nullable: true})
+  @Column({ nullable: true })
   description?: string;
 
-  @OneToMany(type => Content, content => content.article)
-  contentVersions: Content[];
+  @OneToMany(type => ArticleContent, content => content.article)
+  contentVersions: ArticleContent[];
 
   @Column()
   coverImageUrl: string;
 
-  @Column({type: 'boolean', default: false})
+  @Column({ type: 'boolean', default: false })
   isPublished: boolean;
 
-  @ManyToOne(type => Category, category => category.articles, {cascade: false, eager: true})
-  @JoinColumn({name: 'category_id'})
+  @ManyToOne(type => Category, category => category.articles, {
+    cascade: false,
+    eager: true,
+  })
+  @JoinColumn({ name: 'category_id' })
   category: Category;
 
-  @Column({name: 'category_id'})
+  @Column({ name: 'category_id' })
   categoryId: number;
 
   @ManyToMany(type => Tag, tag => tag.articles, { cascade: false, eager: true })
-  @JoinTable({name: 'Article_Tag_Link'})
+  @JoinTable({ name: 'Article_Tag_Link' })
   tags: Tag[];
 
   @Column()
   createdByUserId: number;
 
-  @Column({nullable: true})
+  @Column({ nullable: true })
   updatedByUserId?: number;
 }

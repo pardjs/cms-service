@@ -2,7 +2,15 @@ import { Injectable } from '@nestjs/common';
 import { MS_ONE_SECOND, objToBase64, sha1 } from '@pardjs/common';
 import { createHmac } from 'crypto';
 import { join } from 'path';
-import { ACCESS_KEY_ID, ACCESS_KEY_SECRET, BASE_PATH, BUCKET, CALLBACK_URL, REGION } from './constants';
+import {
+  ACCESS_KEY_ID,
+  ACCESS_KEY_SECRET,
+  BASE_PATH,
+  BUCKET,
+  CALLBACK_URL,
+  REGION,
+} from './constants';
+import { OssPutResponseDto } from './oss-put-response.dto';
 import { UploadCallback } from './upload-callback.interface';
 import { UploadConfig } from './upload-config.interface';
 import { UploadPolicy } from './upload-policy.interface';
@@ -23,7 +31,7 @@ export class AliCloudOssService {
     // TODO: STS policy
   }
 
-  async saveText(path: string, content: string): Promise<{name: string}> {
+  async saveText(path: string, content: string): Promise<OssPutResponseDto> {
     const fullPath = join(BASE_PATH, path);
     return this.client.put(fullPath, Buffer.from(content));
   }
@@ -35,7 +43,7 @@ export class AliCloudOssService {
     const expireAt = now + expireSeconds * MS_ONE_SECOND;
     // For signature
     const config = {} as UploadConfig;
-    config.expiration = (new Date(expireAt)).toISOString();
+    config.expiration = new Date(expireAt).toISOString();
     const condition = ['starts-with', '$key', BASE_PATH + uploadDir];
     config.conditions = [condition];
     const configBase64 = objToBase64(config);

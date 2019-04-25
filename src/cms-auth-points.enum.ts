@@ -6,22 +6,22 @@ export enum CMSAuthPointsDisplayNames {
   UPDATE_ARTICLE = 'update article by id',
   REMOVE_ARTICLE = 'remove article by id',
   PUBLISH_ARTICLE = 'publish one article',
-
   FIND_CATEGORIES = 'find categories',
   FIND_ONE_CATEGORY = 'find category by id',
   CREATE_CATEGORY = 'create category',
   UPDATE_CATEGORY = 'update category by id',
   REMOVE_CATEGORY = 'remove category by id',
-
   FIND_TAGS = 'find tags',
   FIND_ONE_TAG = 'find tag by id',
   CREATE_TAG = 'create tag',
   UPDATE_TAG = 'update tag by id',
   REMOVE_TAG = 'remove tag by id',
-
   UPLOAD = 'upload media to oss',
-
   PUBLISH = 'publish all content to oss',
+  CREATE_WEB_CONTENT = 'creat web content',
+  REPLACE_WEB_CONTENT = 'replace web content',
+  FIND_ONE_WEB_CONTENT = 'find web content by name',
+  PUBLISH_WEB_CONTENT = 'publish web content to oss',
 }
 
 export enum CMSAuthPointsNames {
@@ -32,20 +32,20 @@ export enum CMSAuthPointsNames {
   UPDATE_ARTICLE = 'CMS_SERVICE-UPDATE_ARTICLE',
   REMOVE_ARTICLE = 'CMS_SERVICE-REMOVE_ARTICLE',
   PUBLISH_ARTICLE = 'CMS_SERVICE-PUBLISH_ARTICLE',
-
   FIND_CATEGORIES = 'CMS_SERVICE-FIND_CATEGORIES',
   FIND_ONE_CATEGORY = 'CMS_SERVICE-FIND_ONE_CATEGORY',
   CREATE_CATEGORY = 'CMS_SERVICE-CREATE_CATEGORY',
   UPDATE_CATEGORY = 'CMS_SERVICE-UPDATE_CATEGORY',
   REMOVE_CATEGORY = 'CMS_SERVICE-REMOVE_CATEGORY',
-
   FIND_TAGS = 'CMS_SERVICE-FIND_TAGS',
   FIND_ONE_TAG = 'CMS_SERVICE-FIND_ONE_TAG',
   CREATE_TAG = 'CMS_SERVICE-CREATE_TAG',
   UPDATE_TAG = 'CMS_SERVICE-UPDATE_TAG',
   REMOVE_TAG = 'CMS_SERVICE-REMOVE_TAG',
-
   UPLOAD = 'CMS_SERVICE-UPLOAD',
-
   PUBLISH = 'CMS_SERVICE-PUBLISH',
+  CREATE_WEB_CONTENT = 'CMS_SERVICE-CREATE_WEB_CONTENT',
+  REPLACE_WEB_CONTENT = 'CMS_SERVICE-REPLACE_WEB_CONTENT',
+  FIND_ONE_WEB_CONTENT = 'CMS_SERVICE-FIND_ONE_WEB_CONTENT',
+  PUBLISH_WEB_CONTENT = 'CMS_SERVICE-PUBLISH_WEB_CONTENT',
 }

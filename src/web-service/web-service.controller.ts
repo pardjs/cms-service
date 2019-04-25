@@ -1,5 +1,12 @@
-import { Body, Controller, Get, Post, Request, UseGuards } from '@nestjs/common';
-import { ApiUseTags, ApiBearerAuth } from '@nestjs/swagger';
+import {
+  Body,
+  Controller,
+  Get,
+  Post,
+  Request,
+  UseGuards,
+} from '@nestjs/common';
+import { ApiBearerAuth, ApiUseTags } from '@nestjs/swagger';
 import { AuthPointName, UserResponse } from '@pardjs/users-service-common';
 import { AirRolesGuard } from '@pardjs/users-service-sdk';
 import { AliCloudOssService } from '../ali-cloud-oss/ali-cloud-oss.service';
@@ -22,8 +29,13 @@ export class WebServiceController {
   async getUploadPolicy(@Request() req: any) {
     const user = req.user as UserResponse;
     const userId = user.id;
-    const request = await this.clientUploadActivityService.createRequest(userId);
-    const policy = this.aliCloudOssService.getPolicy(request.dir + '/', request.id);
+    const request = await this.clientUploadActivityService.createRequest(
+      userId,
+    );
+    const policy = this.aliCloudOssService.getPolicy(
+      request.dir + '/',
+      request.id,
+    );
     return policy;
   }
 

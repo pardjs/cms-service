@@ -1,14 +1,13 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-
-import { Content } from './content.entity';
+import { ArticleContent } from './article-content.entity';
 
 @Injectable()
-export class ContentService {
+export class ArticleContentService {
   constructor(
-    @InjectRepository(Content)
-    private readonly repository: Repository<Content>,
+    @InjectRepository(ArticleContent)
+    private readonly repository: Repository<ArticleContent>,
   ) {}
 
   async create(articleId: number, content: string) {

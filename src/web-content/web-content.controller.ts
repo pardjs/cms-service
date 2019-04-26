@@ -8,9 +8,12 @@ import {
   Post,
   Put,
 } from '@nestjs/common';
-import { ApiResponse, ApiUseTags } from '@nestjs/swagger';
+import { ApiBearerAuth, ApiResponse, ApiUseTags } from '@nestjs/swagger';
+
+import { AuthPointName } from '@pardjs/users-service-common';
 
 import { WebContentService } from '.';
+import { CMSAuthPointsNames } from '../cms-auth-points.enum';
 import { httpErrorHandler } from '../utils';
 import {
   CreateWebContentDto,
@@ -19,7 +22,7 @@ import {
   WebContentResDto,
 } from './dto';
 
-@Controller('api/web-contents')
+@Controller('web-contents')
 @ApiUseTags('WebContent')
 export class WebContentController {
   constructor(private readonly webContentService: WebContentService) {}
@@ -29,6 +32,8 @@ export class WebContentController {
     status: HttpStatus.CREATED,
     type: WebContentResDto,
   })
+  @AuthPointName(CMSAuthPointsNames.CREATE_WEB_CONTENT)
+  @ApiBearerAuth()
   async create(
     @Body() data: CreateWebContentDto,
     @Headers('Accept-Language') lang?: string,
@@ -49,6 +54,8 @@ export class WebContentController {
     status: HttpStatus.OK,
     type: WebContentResDto,
   })
+  @AuthPointName(CMSAuthPointsNames.REPLACE_WEB_CONTENT)
+  @ApiBearerAuth()
   async replaceOne(
     @Param('name') name: string,
     @Body() data: ReplaceWebContentDto,
@@ -69,6 +76,8 @@ export class WebContentController {
     status: HttpStatus.OK,
     type: WebContentResDto,
   })
+  @AuthPointName(CMSAuthPointsNames.FIND_ONE_WEB_CONTENT)
+  @ApiBearerAuth()
   async findOne(
     @Param('name') name: string,
     @Headers('Accept-Language') lang: string,
@@ -84,6 +93,8 @@ export class WebContentController {
   @ApiResponse({
     status: HttpStatus.CREATED,
   })
+  @AuthPointName(CMSAuthPointsNames.PUBLISH_WEB_CONTENT)
+  @ApiBearerAuth()
   async publishToOss(
     @Param('name') name: string,
     @Body() data: PublishWebContentDto,

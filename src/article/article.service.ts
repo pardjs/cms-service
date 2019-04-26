@@ -8,7 +8,10 @@ export class ArticleService {
   count() {
     return this.repository.count();
   }
-  constructor(@InjectRepository(Article) private readonly repository: Repository<Article>) {}
+  constructor(
+    @InjectRepository(Article) private readonly repository: Repository<Article>,
+  ) {}
+
   getNewInstance() {
     return this.repository.create();
   }
@@ -29,6 +32,17 @@ export class ArticleService {
   }
 
   setPublished(id: number) {
-    return this.repository.update({id}, { isPublished: true });
+    return this.repository.update({ id }, { isPublished: true });
+  }
+
+  async saveArticlePublishedUrl(
+    id: number,
+    contentUrl: string,
+    articleUrl: string,
+  ) {
+    await this.repository.update(
+      { id },
+      { publishedContentUrl: contentUrl, publishedUrl: articleUrl },
+    );
   }
 }

@@ -2,9 +2,9 @@ import { ApiResponseModelProperty } from '@nestjs/swagger';
 
 export class WebContentResDto {
   @ApiResponseModelProperty({
-    example: 'zh-cn.json',
+    example: 'website-config',
   })
-  readonly name: string;
+  readonly key: string;
 
   @ApiResponseModelProperty({
     example: {
@@ -14,5 +14,5 @@ export class WebContentResDto {
       },
     },
   })
-  readonly content: object;
+  readonly value: object;
 }

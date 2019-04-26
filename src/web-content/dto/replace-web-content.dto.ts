@@ -10,5 +10,5 @@ export class ReplaceWebContentDto {
       },
     },
   })
-  readonly content: object;
+  readonly value: object;
 }

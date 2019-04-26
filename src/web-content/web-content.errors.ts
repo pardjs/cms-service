@@ -7,4 +7,11 @@ export const ERRORS = {
         'There is an unexpected error happened. Please contact admin for help.',
     },
   },
+  UNKNOWN_KEY: {
+    type: 'UNKNOWN_KEY',
+    message: {
+      'zh-CN': '未找到Key对应的内容',
+      'en-US': 'Can not find content with the given key.',
+    },
+  },
 };

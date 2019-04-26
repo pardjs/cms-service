@@ -1,3 +1,4 @@
+import { WebContentModule } from './../web-content/web-content.module';
 import { Module } from '@nestjs/common';
 import { PardjsUsersServiceSdkModule } from '@pardjs/users-service-sdk';
 import { AliCloudOssModule } from '../ali-cloud-oss/ali-cloud-oss.module';
@@ -10,6 +11,7 @@ import { ArticleController } from './article.controller';
 import { ArticleApiService } from './article.service';
 import { CategoryController } from './category.controller';
 import { TagController } from './tag.controller';
+import { WebContentController } from './web-content.controller';
 import { WebServiceController } from './web-service.controller';
 import { WebServiceService } from './web-service.service';
 
@@ -22,6 +24,7 @@ import { WebServiceService } from './web-service.service';
     PardjsUsersServiceSdkModule,
     AliCloudOssModule,
     ClientUploadActivityModule,
+    WebContentModule,
   ],
   providers: [WebServiceService, ArticleApiService],
   controllers: [
@@ -29,6 +32,7 @@ import { WebServiceService } from './web-service.service';
     ArticleController,
     CategoryController,
     TagController,
+    WebContentController,
   ],
 })
 export class WebServiceModule {}

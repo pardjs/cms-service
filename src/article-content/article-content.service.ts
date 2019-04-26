@@ -21,4 +21,9 @@ export class ArticleContentService {
       order: { id: 'DESC' },
     });
   }
+
+  async removeByArticle(articleId: number) {
+    const entities = await this.repository.find({ where: { articleId } });
+    return this.repository.remove(entities);
+  }
 }

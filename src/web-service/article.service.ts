@@ -1,4 +1,4 @@
-import { BadRequestException, Injectable } from '@nestjs/common';
+import { BadRequestException, Injectable, Logger } from '@nestjs/common';
 import { In } from 'typeorm';
 import { AliCloudOssService } from '../ali-cloud-oss/ali-cloud-oss.service';
 import { ArticleContent } from '../article-content/article-content.entity';
@@ -13,6 +13,7 @@ import { Category } from '../category/category.entity';
 import { CategoryService } from '../category/category.service';
 import { Tag } from '../tag/tag.entity';
 import { TagService } from '../tag/tag.service';
+import { WebContentService } from './../web-content/web-content.service';
 
 @Injectable()
 export class ArticleApiService {
@@ -21,6 +22,7 @@ export class ArticleApiService {
     private readonly articleService: ArticleService,
     private readonly categoryService: CategoryService,
     private readonly contentService: ArticleContentService,
+    private readonly webContentService: WebContentService,
     private readonly tagService: TagService,
   ) {}
 
@@ -62,6 +64,8 @@ export class ArticleApiService {
       coverImageUrl: article.coverImageUrl,
       category: { id: category.id, name: category.name },
       tags: tags.map(tag => ({ id: tag.id, name: tag.name })),
+      publishedContentUrl: article.publishedContentUrl,
+      publishedUrl: article.publishedUrl,
       createdAt: article.createdAt.toISOString(),
       updatedAt: article.updatedAt.toISOString(),
     };
@@ -72,7 +76,7 @@ export class ArticleApiService {
     for (const article of articles) {
       await this.publishOne(article.id);
     }
-    return this.aliCloudOssService.saveText(
+    const saveIndexResult = await this.aliCloudOssService.saveText(
       `articles/index.json`,
       JSON.stringify(
         articles.map(article => {
@@ -82,38 +86,52 @@ export class ArticleApiService {
             tags: article.tags,
             title: article.title,
             description: article.description,
+            publishedUrl: article.publishedUrl,
+            publishedContentUrl: article.publishedContentUrl,
           };
         }),
       ),
     );
+    await this.webContentService.upsert('article-index.json', {
+      url: saveIndexResult.url,
+    });
+    await this.webContentService.publishToOss('article-index.json');
+    return saveIndexResult;
   }
 
   async publishOne(id: number): Promise<PublishArticleResponseDto> {
     const article = await this.findOne(id);
-    const content = article.content;
-    article.content = `articles/${article.aliasPath ||
+    const contentPath = `articles/${article.aliasPath ||
       article.id}-content.html`;
     const resContent = await this.aliCloudOssService.saveText(
+      contentPath,
       article.content,
-      content,
     );
-    article.content = resContent.name;
+    article.content = 'CONTENT_IN_SEPARATE_FILE';
+    article.publishedContentUrl = resContent.url;
     const resArticle = await this.aliCloudOssService.saveText(
       `articles/${article.aliasPath || article.id}.json`,
       JSON.stringify(article),
     );
+    await this.articleService.saveArticlePublishedUrl(
+      id,
+      resContent.url,
+      resArticle.url,
+    );
     return { article: resArticle, content: resContent };
   }
 
-  async find(skip?: number, take?: number): Promise<ArticleListResponseDto> {
+  async find(take?: number, skip?: number): Promise<ArticleListResponseDto> {
     const articles = await this.articleService.find({
       skip,
       take,
       select: ['id'],
+      order: { id: 'DESC' },
     });
     const count = await this.articleService.count();
     const articleIds = articles.map(({ id }) => id);
     const data: ArticleResponseDto[] = [];
+    Logger.verbose(articleIds, 'articleIds');
     for (const articleId of articleIds) {
       const item = await this.findOne(articleId);
       data.push(item);
@@ -149,7 +167,8 @@ export class ArticleApiService {
     });
     return this.toResponse(savedArticle, category, content, savedArticle.tags);
   }
-  remove(id: number) {
+  async remove(id: number) {
+    await this.contentService.removeByArticle(id);
     return this.articleService.remove(id);
   }
   async findOne(id: number) {

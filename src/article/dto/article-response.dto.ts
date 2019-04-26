@@ -18,6 +18,18 @@ export class ArticleResponseDto {
   @ApiModelProperty({ example: '文章内容，是一大段。' })
   content: string;
 
+  @ApiModelProperty({
+    example:
+      'http://pardjs-cms-service.oss-cn-shanghai.aliyuncs.com/pardjs/articles/001/1556250410312.json',
+  })
+  publishedUrl: string;
+
+  @ApiModelProperty({
+    example:
+      'http://pardjs-cms-service.oss-cn-shanghai.aliyuncs.com/pardjs/articles/001/1556250410312.json',
+  })
+  publishedContentUrl: string;
+
   @ApiModelProperty({ example: '/images/000-111-0000.jpg' })
   coverImageUrl: string;
 

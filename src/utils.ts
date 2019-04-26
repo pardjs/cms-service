@@ -1,4 +1,8 @@
-import { HttpException, InternalServerErrorException } from '@nestjs/common';
+import {
+  HttpException,
+  InternalServerErrorException,
+  Logger,
+} from '@nestjs/common';
 
 export const ERRORS = {
   UNEXPECTED_ERROR: {
@@ -12,13 +16,14 @@ export const ERRORS = {
 };
 
 export const httpErrorHandler = (error: any, lang = 'zh-CN') => {
+  Logger.error(error);
   if (typeof error.message !== 'string') {
     const keys = Object.keys[error.message];
     error.message = error.message[lang] || error.message[keys[0]];
   }
 
   if (error.type) {
-    // 如果error有type则认为是pardjs error，为已知错误。
+    // 如果 error 有 type 则认为是 pardjs error，为已知错误。
     throw new HttpException(error, error.status || 400);
   }
   throw new InternalServerErrorException(

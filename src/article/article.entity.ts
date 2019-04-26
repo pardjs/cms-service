@@ -38,6 +38,12 @@ export class Article extends EntityParent {
   @Column({ type: 'boolean', default: false })
   isPublished: boolean;
 
+  @Column({ nullable: true })
+  publishedUrl: string;
+
+  @Column({ nullable: true })
+  publishedContentUrl: string;
+
   @ManyToOne(type => Category, category => category.articles, {
     cascade: false,
     eager: true,

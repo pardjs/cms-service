@@ -5,7 +5,7 @@ services:
     container_name: pardjs-users-service
     image: registry.cn-shanghai.aliyuncs.com/pardjs/users-service:1.2.2
     restart: always
-    environment: 
+    environment:
       NODE_ENV: production
       DB_URL: postgres://pardjs:example@pardjs-cms-service-db:5432/pardjs-cms-service
       SUPER_ADMIN_INITIAL_PASSWORD: password
@@ -14,11 +14,11 @@ services:
       PASSWORD_HASH_KEY: password-hash
       IP_WHITE_LIST: 127.0.0.1,172.19.0.1
       IP_WHITE_LIST_USERNAME: white_list_user
-    volumes: 
+    volumes:
       - ./logs:/var/logs
     ports:
       - 5005:5000
-    networks: 
+    networks:
       - pardjs-cms-service
 networks: 
   pardjs-cms-service:

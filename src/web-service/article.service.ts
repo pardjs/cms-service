@@ -64,7 +64,7 @@ export class ArticleApiService {
       description: article.description,
       coverImageUrl: article.coverImageUrl,
       category: category && { id: category.id, name: category.name },
-      tags: tags.map(tag => ({ id: tag.id, name: tag.name })),
+      tags: tags && tags.map(tag => ({ id: tag.id, name: tag.name })),
       publishedUrl: article.publishedUrl,
       publishedAt: article.publishedAt && article.publishedAt.toISOString(),
       createdAt: article.createdAt.toISOString(),

@@ -34,7 +34,7 @@
     "@nestjs/swagger": "^3.0.2",
     "@nestjs/typeorm": "^6.0.0",
     "@nestjs/websockets": "^6.1.1",
-    "@pardjs/common": "^1.1.0",
+    "@pardjs/common": "^1.1.1",
     "@pardjs/users-service-common": "^0.0.3",
     "@pardjs/users-service-sdk": "^0.1.13",
     "ali-oss": "^6.1.1",

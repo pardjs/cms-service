@@ -3,8 +3,5 @@ import { OssPutResponseDto } from '../../ali-cloud-oss/oss-put-response.dto';
 
 export class PublishArticleResponseDto {
   @ApiModelProperty({ type: OssPutResponseDto })
-  content: OssPutResponseDto;
-
-  @ApiModelProperty({ type: OssPutResponseDto })
   article: OssPutResponseDto;
 }

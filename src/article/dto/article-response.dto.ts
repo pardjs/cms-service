@@ -1,4 +1,4 @@
-import { ApiModelProperty } from '@nestjs/swagger';
+import { ApiModelProperty, ApiModelPropertyOptional } from '@nestjs/swagger';
 import { CategoryResponseDto } from '../../category/dto/category-response.dto';
 import { TagResponseDto } from '../../tag/dto/tag-response.dto';
 
@@ -24,23 +24,20 @@ export class ArticleResponseDto {
   })
   publishedUrl: string;
 
-  @ApiModelProperty({
-    example:
-      'http://pardjs-cms-service.oss-cn-shanghai.aliyuncs.com/pardjs/articles/001/1556250410312.json',
-  })
-  publishedContentUrl: string;
-
   @ApiModelProperty({ example: '/images/000-111-0000.jpg' })
   coverImageUrl: string;
 
-  @ApiModelProperty({ type: CategoryResponseDto })
-  category: CategoryResponseDto;
+  @ApiModelPropertyOptional({ type: CategoryResponseDto })
+  category?: CategoryResponseDto;
 
   @ApiModelProperty({ type: TagResponseDto, isArray: true })
   tags: TagResponseDto[];
 
   @ApiModelProperty()
   createdAt: string;
+
+  @ApiModelProperty()
+  publishedAt: string;
 
   @ApiModelProperty()
   updatedAt: string;

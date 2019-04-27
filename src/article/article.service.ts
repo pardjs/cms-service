@@ -37,12 +37,11 @@ export class ArticleService {
 
   async saveArticlePublishedUrl(
     id: number,
-    contentUrl: string,
     articleUrl: string,
   ) {
     await this.repository.update(
       { id },
-      { publishedContentUrl: contentUrl, publishedUrl: articleUrl },
+      { publishedUrl: articleUrl, publishedAt: new Date() },
     );
   }
 }

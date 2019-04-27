@@ -1,16 +1,17 @@
-import { ApiModelProperty } from '@nestjs/swagger';
+import { ApiModelProperty, ApiModelPropertyOptional } from '@nestjs/swagger';
 import { IsArray, IsInt, IsNumber, IsOptional, IsString } from 'class-validator';
 
 export class UpsertArticleDto {
-    @ApiModelProperty({example: 'article-alias'})
+    @ApiModelPropertyOptional({example: 'article-alias'})
     @IsString()
+    @IsOptional()
     aliasPath: string;
 
     @ApiModelProperty({example: '测试文章'})
     @IsString()
     title: string;
 
-    @ApiModelProperty({example: '文章描述 \n 描述文章'})
+    @ApiModelPropertyOptional({example: '文章描述 \n 描述文章'})
     @IsString()
     @IsOptional()
     description?: string;
@@ -23,11 +24,12 @@ export class UpsertArticleDto {
     @IsString()
     coverImageUrl: string;
 
-    @ApiModelProperty({example: 1})
+    @ApiModelPropertyOptional({example: 1})
     @IsInt()
+    @IsOptional()
     categoryId: number;
 
-    @ApiModelProperty({
+    @ApiModelPropertyOptional({
         type: Number,
         isArray: true,
         example: [1, 2, 3],

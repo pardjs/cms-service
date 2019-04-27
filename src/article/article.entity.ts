@@ -41,8 +41,8 @@ export class Article extends EntityParent {
   @Column({ nullable: true })
   publishedUrl: string;
 
-  @Column({ nullable: true })
-  publishedContentUrl: string;
+  @Column({ type: 'timestamp', nullable: true })
+  publishedAt: Date;
 
   @ManyToOne(type => Category, category => category.articles, {
     cascade: false,
@@ -51,7 +51,7 @@ export class Article extends EntityParent {
   @JoinColumn({ name: 'category_id' })
   category: Category;
 
-  @Column({ name: 'category_id' })
+  @Column({ name: 'category_id', nullable: true })
   categoryId: number;
 
   @ManyToMany(type => Tag, tag => tag.articles, { cascade: false, eager: true })

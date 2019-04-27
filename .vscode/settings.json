@@ -6,6 +6,7 @@
         "aliyuncs",
         "commitlint",
         "compodoc",
+        "datetime",
         "dozto",
         "jsonb",
         "lcov",

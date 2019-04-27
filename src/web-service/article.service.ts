@@ -61,11 +61,12 @@ export class ArticleApiService {
       aliasPath: article.aliasPath,
       title: article.title,
       content: content.content,
+      description: article.description,
       coverImageUrl: article.coverImageUrl,
-      category: { id: category.id, name: category.name },
+      category: category && { id: category.id, name: category.name },
       tags: tags.map(tag => ({ id: tag.id, name: tag.name })),
-      publishedContentUrl: article.publishedContentUrl,
       publishedUrl: article.publishedUrl,
+      publishedAt: article.publishedAt && article.publishedAt.toISOString(),
       createdAt: article.createdAt.toISOString(),
       updatedAt: article.updatedAt.toISOString(),
     };
@@ -81,44 +82,38 @@ export class ArticleApiService {
       JSON.stringify(
         articles.map(article => {
           return {
+            id: article.id,
             key: article.aliasPath || article.id,
             category: article.category,
             tags: article.tags,
             title: article.title,
             description: article.description,
             publishedUrl: article.publishedUrl,
-            publishedContentUrl: article.publishedContentUrl,
+            publishedAt: article.publishedAt,
+            createdAt: article.createdAt,
+            updatedAt: article.updatedAt,
           };
         }),
       ),
     );
-    await this.webContentService.upsert('article-index.json', {
+    await this.webContentService.upsert('article-index', {
       url: saveIndexResult.url,
     });
-    await this.webContentService.publishToOss('article-index.json');
+    await this.webContentService.publishToOss('article-index');
     return saveIndexResult;
   }
 
   async publishOne(id: number): Promise<PublishArticleResponseDto> {
     const article = await this.findOne(id);
-    const contentPath = `articles/${article.aliasPath ||
-      article.id}-content.html`;
-    const resContent = await this.aliCloudOssService.saveText(
-      contentPath,
-      article.content,
-    );
-    article.content = 'CONTENT_IN_SEPARATE_FILE';
-    article.publishedContentUrl = resContent.url;
     const resArticle = await this.aliCloudOssService.saveText(
       `articles/${article.aliasPath || article.id}.json`,
       JSON.stringify(article),
     );
     await this.articleService.saveArticlePublishedUrl(
       id,
-      resContent.url,
       resArticle.url,
     );
-    return { article: resArticle, content: resContent };
+    return { article: resArticle };
   }
 
   async find(take?: number, skip?: number): Promise<ArticleListResponseDto> {

@@ -8,6 +8,7 @@ import {
   BASE_PATH,
   BUCKET,
   CALLBACK_URL,
+  PROTOCOL,
   REGION,
 } from './constants';
 import { OssPutResponseDto } from './oss-put-response.dto';
@@ -58,7 +59,7 @@ export class AliCloudOssService {
     }
     const policy: UploadPolicy = {
       accessid: ACCESS_KEY_ID,
-      host: `http://${BUCKET}.${REGION}.aliyuncs.com`,
+      host: `${PROTOCOL}://${BUCKET}.${REGION}.aliyuncs.com`,
       expire: Math.floor(expireAt / 1000),
       signature,
       policy: configBase64,

@@ -65,10 +65,10 @@ export class ArticleController {
     return this.articleApiService.publishOne(id);
   }
 
-  @AuthPointName(CMSAuthPointsNames.FIND_ARTICLES)
   @Get('')
-  @UseGuards(AirRolesGuard)
-  @ApiBearerAuth()
+  // @AuthPointName(CMSAuthPointsNames.FIND_ARTICLES)
+  // @UseGuards(AirRolesGuard)
+  // @ApiBearerAuth()
   @ApiResponse({
     status: HttpStatus.OK,
     type: ArticleListResponseDto,
@@ -77,10 +77,10 @@ export class ArticleController {
     return this.articleApiService.find(take, skip);
   }
 
-  @AuthPointName(CMSAuthPointsNames.FIND_ONE_ARTICLE)
   @Get(':id')
-  @UseGuards(AirRolesGuard)
-  @ApiBearerAuth()
+  // @AuthPointName(CMSAuthPointsNames.FIND_ONE_ARTICLE)
+  // @UseGuards(AirRolesGuard)
+  // @ApiBearerAuth()
   @ApiResponse({
     status: HttpStatus.CREATED,
     type: ArticleResponseDto,

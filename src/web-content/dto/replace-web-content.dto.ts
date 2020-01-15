@@ -1,7 +1,7 @@
-import { ApiModelProperty } from '@nestjs/swagger';
+import { ApiProperty } from '@nestjs/swagger';
 
 export class ReplaceWebContentDto {
-  @ApiModelProperty({
+  @ApiProperty({
     description: '要保存的json内容',
     example: {
       header: {

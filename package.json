@@ -36,7 +36,7 @@
     "@nestjs/websockets": "^6.10.14",
     "@pardjs/common": "^1.1.4-rc4",
     "@pardjs/auth-service-common": "^0.1.1-rc5",
-    "@pardjs/auth-service-sdk": "^0.0.4",
+    "@pardjs/auth-service-nestjs-sdk": "^0.1.16-rc2",
     "@sentry/node": "^5.11.0",
     "ali-oss": "^6.4.0",
     "class-validator": "^0.11.0",

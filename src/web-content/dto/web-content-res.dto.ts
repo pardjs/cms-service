@@ -1,12 +1,12 @@
-import { ApiResponseModelProperty } from '@nestjs/swagger';
+import { ApiProperty } from '@nestjs/swagger';
 
 export class WebContentResDto {
-  @ApiResponseModelProperty({
+  @ApiProperty({
     example: 'website-config',
   })
   readonly key: string;
 
-  @ApiResponseModelProperty({
+  @ApiProperty({
     example: {
       header: {
         title: '网站header标题',

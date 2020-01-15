@@ -40,7 +40,6 @@ async function bootstrap() {
     .addTag('cats')
     .setBasePath(SERVICE_BASE + '/api')
     .addBearerAuth()
-    .setSchemes('http', 'https')
     .build();
   const doc = SwaggerModule.createDocument(app, options);
   SwaggerModule.setup(

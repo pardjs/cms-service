@@ -11,9 +11,9 @@ import {
   Request,
   UseGuards,
 } from '@nestjs/common';
-import { ApiBearerAuth, ApiResponse, ApiUseTags } from '@nestjs/swagger';
-import { AuthPointName, UserResponse } from '@pardjs/users-service-common';
-import { AirRolesGuard } from '@pardjs/users-service-sdk';
+import { ApiBearerAuth, ApiResponse, ApiTags } from '@nestjs/swagger';
+import { AuthPointName, UserResponseDto } from '@pardjs/auth-service-common';
+import { AirRolesGuard } from '@pardjs/auth-service-nestjs-sdk';
 import { DeleteResult } from 'typeorm';
 import { OssPutResponseDto } from '../ali-cloud-oss/oss-put-response.dto';
 import { ArticleListResponseDto } from '../article/dto/article-list-response.dto';
@@ -24,7 +24,7 @@ import { PublishArticleResponseDto } from './../article/dto/publish-article-resp
 import { ArticleApiService } from './article.service';
 
 @Controller('articles')
-@ApiUseTags('Article')
+@ApiTags('Article')
 export class ArticleController {
   constructor(private articleApiService: ArticleApiService) {}
 
@@ -37,7 +37,7 @@ export class ArticleController {
     type: ArticleResponseDto,
   })
   create(@Body() data: UpsertArticleDto, @Request() req: any) {
-    const user = req.user as UserResponse;
+    const user = req.user as UserResponseDto;
     return this.articleApiService.create(data, user.id);
   }
 
@@ -114,7 +114,7 @@ export class ArticleController {
     @Body() data: UpsertArticleDto,
     @Request() req: any,
   ) {
-    const user = req.user as UserResponse;
+    const user = req.user as UserResponseDto;
     return this.articleApiService.updateOne(id, data, user.id);
   }
 }

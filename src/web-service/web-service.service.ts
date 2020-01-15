@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
+import { PardjsUsersService } from '@pardjs/auth-service-nestjs-sdk';
 import { logger } from '@pardjs/common';
-import { PardjsUsersService } from '@pardjs/users-service-sdk';
 import {
   CMSAuthPointsDisplayNames,
   CMSAuthPointsNames,

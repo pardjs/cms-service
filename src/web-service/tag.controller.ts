@@ -11,9 +11,9 @@ import {
   Query,
   UseGuards,
 } from '@nestjs/common';
-import { ApiBearerAuth, ApiResponse, ApiUseTags } from '@nestjs/swagger';
-import { AuthPointName } from '@pardjs/users-service-common';
-import { AirRolesGuard } from '@pardjs/users-service-sdk';
+import { ApiBearerAuth, ApiResponse, ApiTags } from '@nestjs/swagger';
+import { AuthPointName } from '@pardjs/auth-service-common';
+import { AirRolesGuard } from '@pardjs/auth-service-nestjs-sdk';
 import { FindManyOptions } from 'typeorm';
 import { CMSAuthPointsNames } from '../cms-auth-points.enum';
 import { TagResponseDto } from '../tag/dto/tag-response.dto';
@@ -22,7 +22,7 @@ import { Tag } from '../tag/tag.entity';
 import { TagService } from '../tag/tag.service';
 
 @Controller('tags')
-@ApiUseTags('Tag')
+@ApiTags('Tag')
 export class TagController {
   constructor(private readonly tagService: TagService) {}
 

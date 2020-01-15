@@ -1,13 +1,13 @@
-import { ApiModelProperty } from '@nestjs/swagger';
+import { ApiProperty } from '@nestjs/swagger';
 import { ArticleResponseDto } from './article-response.dto';
 
 export class ArticleListResponseDto {
-  @ApiModelProperty({
+  @ApiProperty({
     type: ArticleResponseDto,
     isArray: true,
   })
   data: ArticleResponseDto[];
 
-  @ApiModelProperty()
+  @ApiProperty()
   count: number;
 }

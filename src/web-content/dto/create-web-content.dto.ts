@@ -1,13 +1,13 @@
-import { ApiModelProperty } from '@nestjs/swagger';
+import { ApiProperty } from '@nestjs/swagger';
 
 export class CreateWebContentDto {
-  @ApiModelProperty({
+  @ApiProperty({
     description: '内容的唯一标示，如文件名或其他字段。',
     example: 'website-config',
   })
   readonly key: string;
 
-  @ApiModelProperty({
+  @ApiProperty({
     description: '要保存的json内容',
     example: {
       header: {

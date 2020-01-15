@@ -344,7 +344,7 @@
     "@types/jsonwebtoken" "7.2.8"
     jsonwebtoken "8.4.0"
 
-"@nestjs/microservices@^6.10.14":
+"@nestjs/microservices@^6.10.14", "@nestjs/microservices@^6.9.0":
   version "6.10.14"
   resolved "https://registry.npm.taobao.org/@nestjs/microservices/download/@nestjs/microservices-6.10.14.tgz#10cb769c40f245c49463f36717bb44af110b4f70"
   integrity sha1-EMt2nEDyRcSUY/NnF7tErxELT3A=
@@ -434,7 +434,7 @@
     consola "^2.3.0"
     node-fetch "^2.3.0"
 
-"@pardjs/auth-service-common@^0.1.1-rc5":
+"@pardjs/auth-service-common@^0.1.1-rc4", "@pardjs/auth-service-common@^0.1.1-rc5":
   version "0.1.1-rc5"
   resolved "https://registry.npm.taobao.org/@pardjs/auth-service-common/download/@pardjs/auth-service-common-0.1.1-rc5.tgz#32cf1c02419d3efff5e7ebaffb26508f7d9e936d"
   integrity sha1-Ms8cAkGdPv/15+uv+yZQj32ek20=
@@ -444,14 +444,23 @@
     class-validator "^0.11.0"
     rxjs "^6.5.3"
 
-"@pardjs/auth-service-sdk@^0.0.4":
-  version "0.0.4"
-  resolved "https://registry.npm.taobao.org/@pardjs/auth-service-sdk/download/@pardjs/auth-service-sdk-0.0.4.tgz#59171f27c422e814e19c4e04e82aed4a0604222b"
-  integrity sha1-WRcfJ8Qi6BThnE4E6CrtSgYEIis=
+"@pardjs/auth-service-nestjs-sdk@^0.1.16-rc2":
+  version "0.1.16-rc2"
+  resolved "https://registry.npm.taobao.org/@pardjs/auth-service-nestjs-sdk/download/@pardjs/auth-service-nestjs-sdk-0.1.16-rc2.tgz#d90fc3752a805b18a08b7b06c3f1922078d2a1aa"
+  integrity sha1-2Q/DdSqAWxigi3sGw/GSIHjSoao=
   dependencies:
+    "@nestjs/common" "^6.9.0"
+    "@nestjs/core" "^6.9.0"
+    "@nestjs/microservices" "^6.9.0"
+    "@pardjs/auth-service-common" "^0.1.1-rc4"
+    "@pardjs/common" "^1.1.4-rc1"
     axios "^0.19.0"
+    passport "^0.4.0"
+    passport-jwt "^4.0.0"
+    reflect-metadata "^0.1.13"
+    rxjs "^6.5.3"
 
-"@pardjs/common@^1.1.4-rc4":
+"@pardjs/common@^1.1.4-rc1", "@pardjs/common@^1.1.4-rc4":
   version "1.1.4-rc4"
   resolved "https://registry.npm.taobao.org/@pardjs/common/download/@pardjs/common-1.1.4-rc4.tgz#013109563be199f598d8fbd4ba0a26811f422dc4"
   integrity sha1-ATEJVjvhmfWY2PvUugomgR9CLcQ=
@@ -4218,6 +4227,22 @@ jsonwebtoken@8.4.0:
     lodash.once "^4.0.0"
     ms "^2.1.1"
 
+jsonwebtoken@^8.2.0:
+  version "8.5.1"
+  resolved "https://registry.npm.taobao.org/jsonwebtoken/download/jsonwebtoken-8.5.1.tgz#00e71e0b8df54c2121a1f26137df2280673bcc0d"
+  integrity sha1-AOceC431TCEhofJhN98igGc7zA0=
+  dependencies:
+    jws "^3.2.2"
+    lodash.includes "^4.3.0"
+    lodash.isboolean "^3.0.3"
+    lodash.isinteger "^4.0.4"
+    lodash.isnumber "^3.0.3"
+    lodash.isplainobject "^4.0.6"
+    lodash.isstring "^4.0.1"
+    lodash.once "^4.0.0"
+    ms "^2.1.1"
+    semver "^5.6.0"
+
 jsprim@^1.2.2:
   version "1.4.1"
   resolved "https://registry.npm.taobao.org/jsprim/download/jsprim-1.4.1.tgz#313e66bc1e5cc06e438bc1b7499c2e5c56acb6a2"
@@ -4242,7 +4267,7 @@ jwa@^1.4.1:
     ecdsa-sig-formatter "1.0.11"
     safe-buffer "^5.0.1"
 
-jws@^3.1.5:
+jws@^3.1.5, jws@^3.2.2:
   version "3.2.2"
   resolved "https://registry.npm.taobao.org/jws/download/jws-3.2.2.tgz?cache=0&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fjws%2Fdownload%2Fjws-3.2.2.tgz#001099f3639468c9414000e99995fa52fb478304"
   integrity sha1-ABCZ82OUaMlBQADpmZX6UvtHgwQ=
@@ -5330,6 +5355,27 @@ pascalcase@^0.1.1:
   resolved "https://registry.npm.taobao.org/pascalcase/download/pascalcase-0.1.1.tgz#b363e55e8006ca6fe21784d2db22bd15d7917f14"
   integrity sha1-s2PlXoAGym/iF4TS2yK9FdeRfxQ=
 
+passport-jwt@^4.0.0:
+  version "4.0.0"
+  resolved "https://registry.npm.taobao.org/passport-jwt/download/passport-jwt-4.0.0.tgz#7f0be7ba942e28b9f5d22c2ebbb8ce96ef7cf065"
+  integrity sha1-fwvnupQuKLn10iwuu7jOlu988GU=
+  dependencies:
+    jsonwebtoken "^8.2.0"
+    passport-strategy "^1.0.0"
+
+passport-strategy@1.x.x, passport-strategy@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.npm.taobao.org/passport-strategy/download/passport-strategy-1.0.0.tgz#b5539aa8fc225a3d1ad179476ddf236b440f52e4"
+  integrity sha1-tVOaqPwiWj0a0XlHbd8ja0QPUuQ=
+
+passport@^0.4.0:
+  version "0.4.1"
+  resolved "https://registry.npm.taobao.org/passport/download/passport-0.4.1.tgz?cache=0&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fpassport%2Fdownload%2Fpassport-0.4.1.tgz#941446a21cb92fc688d97a0861c38ce9f738f270"
+  integrity sha1-lBRGohy5L8aI2XoIYcOM6fc48nA=
+  dependencies:
+    passport-strategy "1.x.x"
+    pause "0.0.1"
+
 path-exists@^3.0.0:
   version "3.0.0"
   resolved "https://registry.npm.taobao.org/path-exists/download/path-exists-3.0.0.tgz#ce0ebeaa5f78cb18925ea7d810d7b59b010fd515"
@@ -5398,6 +5444,11 @@ pause-stream@~0.0.11:
   integrity sha1-/lo0sMvOErWqaitAPuLnO2AvFEU=
   dependencies:
     through "~2.3"
+
+pause@0.0.1:
+  version "0.0.1"
+  resolved "https://registry.npm.taobao.org/pause/download/pause-0.0.1.tgz#1d408b3fdb76923b9543d96fb4c9dfd535d9cb5d"
+  integrity sha1-HUCLP9t2kjuVQ9lvtMnf1TXZy10=
 
 performance-now@^2.1.0:
   version "2.1.0"

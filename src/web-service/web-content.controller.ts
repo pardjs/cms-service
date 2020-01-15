@@ -8,9 +8,9 @@ import {
   Post,
   Put,
 } from '@nestjs/common';
-import { ApiBearerAuth, ApiResponse, ApiUseTags } from '@nestjs/swagger';
+import { ApiBearerAuth, ApiResponse, ApiTags } from '@nestjs/swagger';
 
-import { AuthPointName } from '@pardjs/users-service-common';
+import { AuthPointName } from '@pardjs/auth-service-common';
 
 import { CMSAuthPointsNames } from '../cms-auth-points.enum';
 import { httpErrorHandler } from '../utils';
@@ -22,7 +22,7 @@ import {
 } from '../web-content/dto';
 
 @Controller('web-contents')
-@ApiUseTags('WebContent')
+@ApiTags('WebContent')
 export class WebContentController {
   constructor(private readonly webContentService: WebContentService) {}
 

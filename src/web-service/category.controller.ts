@@ -11,9 +11,9 @@ import {
   Query,
   UseGuards,
 } from '@nestjs/common';
-import { ApiBearerAuth, ApiResponse, ApiUseTags } from '@nestjs/swagger';
-import { AuthPointName } from '@pardjs/users-service-common';
-import { AirRolesGuard } from '@pardjs/users-service-sdk';
+import { ApiBearerAuth, ApiResponse, ApiTags } from '@nestjs/swagger';
+import { AuthPointName } from '@pardjs/auth-service-common';
+import { AirRolesGuard } from '@pardjs/auth-service-nestjs-sdk';
 import { FindManyOptions } from 'typeorm';
 import { Category } from '../category/category.entity';
 import { CategoryService } from '../category/category.service';
@@ -22,7 +22,7 @@ import { CMSAuthPointsNames } from '../cms-auth-points.enum';
 import { CategoryResponseDto } from './../category/dto/category-response.dto';
 
 @Controller('categories')
-@ApiUseTags('Category')
+@ApiTags('Category')
 export class CategoryController {
   constructor(private readonly service: CategoryService) {}
 

@@ -39,7 +39,7 @@
     "@pardjs/auth-service-nestjs-sdk": "^0.1.16-rc2",
     "@sentry/node": "^5.11.0",
     "ali-oss": "^6.4.0",
-    "class-validator": "^0.11.0",
+    "class-validator": "^0.14.0",
     "cookie-parser": "^1.4.4",
     "dotenv": "^8.2.0",
     "pg": "^7.17.1",
